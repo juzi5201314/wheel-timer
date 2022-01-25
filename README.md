@@ -1,6 +1,8 @@
 # wheel-timer
 A timer based on a multi-time wheel structure
 
+![docs.rs](https://img.shields.io/docsrs/wheel-timer/latest?style=for-the-badge)
+
 This library uses a multi-layered time wheel structure.
 
 When a task is added to the wheel, it will go to the wheel with the coarsest granularity first, 
