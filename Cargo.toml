@@ -2,6 +2,11 @@
 name = "wheel-timer"
 version = "0.1.0"
 edition = "2021"
+description = "A timer based on a multi-time wheel structure"
+license-file = "LICENSE"
+documentation = "https://docs.rs/wheel-timer"
+repository = "https://github.com/juzi5201314/wheel-timer"
+authors = ["soeur <juzi201314@gmail.com>"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
