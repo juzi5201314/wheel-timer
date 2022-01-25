@@ -1,5 +1,5 @@
 use std::time::Duration;
-use wheel_timer::{Behave, MultiWheel};
+use wheel_timer2::{Behave, MultiWheel};
 
 const PRECISION: Duration = Duration::from_secs(1);
 

@@ -1,7 +1,7 @@
-# wheel-timer
+# wheel-timer2
 A timer based on a multi-time wheel structure
 
-![docs.rs](https://img.shields.io/docsrs/wheel-timer/latest?style=for-the-badge)
+![docs.rs](https://img.shields.io/docsrs/wheel-timer2/latest?style=for-the-badge)
 
 This library uses a multi-layered time wheel structure.
 

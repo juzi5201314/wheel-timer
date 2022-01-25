@@ -8,7 +8,7 @@ use tokio::sync::Mutex;
 use tokio_tungstenite::tungstenite::Message;
 use tokio_tungstenite::{accept_async, connect_async, MaybeTlsStream, WebSocketStream};
 
-use wheel_timer::{Behave, MultiWheel};
+use wheel_timer2::{Behave, MultiWheel};
 
 const PRECISION: Duration = Duration::from_millis(100);
 

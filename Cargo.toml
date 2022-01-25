@@ -1,10 +1,10 @@
 [package]
-name = "wheel-timer"
+name = "wheel-timer2"
 version = "0.1.0"
 edition = "2021"
 description = "A timer based on a multi-time wheel structure"
 license-file = "LICENSE"
-documentation = "https://docs.rs/wheel-timer"
+documentation = "https://docs.rs/wheel-timer2"
 repository = "https://github.com/juzi5201314/wheel-timer"
 authors = ["soeur <juzi201314@gmail.com>"]
 
