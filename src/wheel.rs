@@ -36,6 +36,11 @@ pub struct Slot {
 }
 
 impl MultiWheel {
+    /// Create a roulette wheel consisting of multiple time wheels
+    ///
+    /// `n`: `n` layers of wheels
+    /// `capacity`: how many slots per wheel
+    /// `granularity`: the granularity of the time wheel, which must be consistent with the interval at which [MultiWheel::tick] is called.
     pub fn new(n: usize, capacity: usize, granularity: Duration) -> Self {
         let mut wheels = Vec::with_capacity(n);
         wheels.resize_with(n, || Wheel::new(capacity));
