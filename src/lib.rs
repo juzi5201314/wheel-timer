@@ -9,3 +9,4 @@ mod wheel;
 pub use behave::Behave;
 pub use handle::AddHandle;
 pub use wheel::MultiWheel;
+pub use callback::Callback;

@@ -9,6 +9,8 @@ use crate::callback::{BoxedCallback, Callback};
 #[derive(Clone, Copy, Debug)]
 pub struct DanglingAddHandle;
 
+/// Allow adding tasks while wheel is running.
+/// These tasks will be added to the wheel in the next tick.
 #[derive(Clone, Debug)]
 pub struct AddHandle(pub(crate) Sender<(BoxedCallback, Duration, Box<dyn Any + Send>)>);
 
