@@ -1,5 +1,7 @@
-use crate::behave::Behave;
 use std::any::Any;
+use std::marker::PhantomData;
+
+use crate::behave::Behave;
 
 pub type BoxedCallback = Box<dyn Callback<Box<dyn Any + Send>> + Send>;
 
@@ -24,15 +26,18 @@ where
     }
 
     fn boxed(self) -> BoxedCallback {
-        struct A(Box<dyn Callback<()> + Send + 'static>);
+        struct A<CB>(CB);
 
-        impl Callback<Box<dyn Any + Send>> for A {
+        impl<CB> Callback<Box<dyn Any + Send>> for A<CB>
+        where
+            CB: Callback<()> + Send + 'static,
+        {
             fn call(&self, _: &mut Box<dyn Any + Send>) -> Behave {
                 self.0.call(&mut ())
             }
         }
 
-        Box::new(A(Box::new(self)))
+        Box::new(A(self))
     }
 }
 
@@ -40,18 +45,19 @@ impl<F, B, C> Callback<(C,)> for F
 where
     F: Fn(&mut C) -> B + Send + 'static,
     B: Into<Behave>,
-    C: 'static,
+    C: Send + 'static,
 {
     fn call(&self, (ref mut ctx,): &mut (C,)) -> Behave {
         self(ctx).into()
     }
 
     fn boxed(self) -> BoxedCallback {
-        struct A<C>(Box<dyn Callback<(C,)> + Send + 'static>);
+        struct A<C, CB>(CB, PhantomData<C>);
 
-        impl<C> Callback<Box<dyn Any + Send>> for A<C>
+        impl<C, CB> Callback<Box<dyn Any + Send>> for A<C, CB>
         where
-            C: 'static,
+            CB: Callback<(C,)> + Send + 'static,
+            C: Send + 'static,
         {
             fn call(&self, a: &mut Box<dyn Any + Send>) -> Behave {
                 self.0
@@ -59,6 +65,6 @@ where
             }
         }
 
-        Box::new(A::<C>(Box::new(self)))
+        Box::new(A::<C, _>(self, PhantomData::default()))
     }
 }
